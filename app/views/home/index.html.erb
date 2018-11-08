@@ -1,0 +1,37 @@
+
+<% provide(:title, 'crypto search') %>
+<h1>Quel crypto monnaie vous intéresse?</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:crypto, url: {action: "create"}) do |f| %>
+
+      <%= f.label :crypto_name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <br />
+      <%= f.submit "rechercher", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<br />
+<br />
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Index</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prix</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% index = 1 %>
+  <% @all_crypto.each do |crypto| %>
+    <tr>
+      <th scope="row"><%= index %></th>
+      <td><%= crypto[:name] %></td>
+      <td><%= crypto[:trade] %></td>
+    </tr>
+    <% index += 1 %>
+  <% end %>
+  </tbody>
+</table>
